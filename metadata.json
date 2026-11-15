@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix A1K41 Winter Cup - Tỉ Số \u0026 Bảng Xếp Hạng",
+  "description": "Hệ thống cập nhật tỉ số, bảng xếp hạng, sơ đồ knock-out và thống kê giải đấu A1K41 Winter Cup trực tiếp từ Google Sheet.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

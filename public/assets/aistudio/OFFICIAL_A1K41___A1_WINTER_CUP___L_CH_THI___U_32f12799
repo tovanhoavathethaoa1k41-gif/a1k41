@@ -1,0 +1,50 @@
+,🏆 HỆ THỐNG QUẢN LÝ THI ĐẤU BÓNG ĐÁ - 2 BẢNG (6 ĐỘI),,,,,,,,,,,,,,,,,,
+,⚡ Quản lý 6 đội bóng tập trung • Tự động tính điểm Bảng A & B • Vòng Knock-out 2 lượt trận (Lượt đi & Lượt về),,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,⚙️ NHẬP TÊN ĐỘI TẠI ĐÂY,,,,,,,,,📋 PHÂN BỔ BẢNG ĐẤU & ĐIỀU LỆ GIẢI (TỰ ĐỘNG),,,,,,,,,
+,STT,Mã Đội,Tên Đội Bóng,,,Phân Bảng,,,,BẢNG A (3 Đội),,,,,BẢNG B (3 Đội),,,,
+,1,ĐT 1,PHÔI FC (ENG),,,Bảng A ,,,,PHÔI FC (ENG),,,,,KIHITO MADAM (FRA),,,,
+,2,ĐT 2,ARSENAL ĂN 4 (BRA),,,,,,,ARSENAL ĂN 4 (BRA),,,,,CORNER FC (ESP),,,,
+,3,ĐT 3,OCEANSKY (POR),,,,,,,OCEANSKY (POR),,,,,DAT BAO DNC (ARG),,,,
+,4,ĐT 4,KIHITO MADAM (FRA),,,Bảng B,,,,📌 Thể thức Vòng bảng: Đá vòng tròn 1 lượt (Thắng = 3đ | Hòa = 1đ | Thua = 0đ),,,,,,,,,
+,5,ĐT 5,CORNER FC (ESP),,,,,,,📌 Tiêu chí xếp hạng: 1. Điểm số  |  2. Hiệu số bàn thắng (HS)  |  3. Tổng bàn thắng (BT),,,,,,,,,
+,6,ĐT 6,DAT BAO DNC (ARG),,,,,,,📌 Quyền vào Bán kết: Top 2 đội dẫn đầu mỗi bảng (Nhất & Nhì) đi tiếp vào Bán kết,,,,,,,,,
+,"💡 Hướng dẫn: Đổi tên 6 đội tại các ô màu vàng ở trên. Bảng A, Bảng B, Lịch thi đấu và Vòng Knock-out sẽ tự động đồng bộ 100%.",,,,,,,,,"📌 Thể thức Knock-out: Bán kết, Chung kết & Tranh Hạng Ba đều thi đấu 2 lượt trận (Lượt đi & Lượt về).",,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,📅 LỊCH THI ĐẤU & KẾT QUẢ - BẢNG A (3 TRẬN),,,,,,,,,🏆 BẢNG XẾP HẠNG CHÍNH THỨC - BẢNG A,,,,,,,,,
+,Vòng 1,Ngày,Đội nhà,BT 1,-,BT 2,Đội khách,Trạng thái,,Hạng,Đội bóng,ST,T,H,B,BT,BB,HS,Điểm
+,Vòng 1,Trưa ngày 1,PHÔI FC (ENG),3,-,6,ARSENAL ĂN 4 (BRA),Đã đấu,,🥇 1,ARSENAL ĂN 4 (BRA),2,1,0,1,7,5,2,3
+,Vòng 2,Trưa ngày 1,ARSENAL ĂN 4 (BRA),1,-,2,OCEANSKY (POR),Đã đấu,,🥈 2,OCEANSKY (POR),2,1,0,1,2,2,0,3
+,Vòng 3,Trưa ngày 1,OCEANSKY (POR),0,-,1,PHÔI FC (ENG),Đã đấu,,3,PHÔI FC (ENG),2,1,0,1,4,6,-2,3
+,💡 Nhập tỉ số Bảng A vào ô màu vàng (BT 1 & BT 2) để tự động cập nhật BXH.,,,,,,,,,📌 Top 2 đội dẫn đầu Bảng A (Nhất A & Nhì A) giành quyền vào vòng Bán kết.,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,📅 LỊCH THI ĐẤU & KẾT QUẢ - BẢNG B (3 TRẬN),,,,,,,,,🏆 BẢNG XẾP HẠNG CHÍNH THỨC - BẢNG B,,,,,,,,,
+,Vòng,Ngày,Đội nhà,BT 1,-,BT 2,Đội khách,Trạng thái,,Hạng,Đội bóng,ST,T,H,B,BT,BB,HS,Điểm
+,Vòng 1,Trưa ngày 1,KIHITO MADAM (FRA),2,-,3,CORNER FC (ESP),Đã đấu,,🥇 1,DAT BAO DNC (ARG),2,2,0,0,13,2,11,6
+,Vòng 2,Trưa ngày 1,CORNER FC (ESP),1,-,8,DAT BAO DNC (ARG),Đã đấu,,🥈 2,CORNER FC (ESP),2,1,0,1,4,10,-6,3
+,Vòng 3,Trưa ngày 1,DAT BAO DNC (ARG),5,-,1,KIHITO MADAM (FRA),Đã đấu,,3,KIHITO MADAM (FRA),2,0,0,2,3,8,-5,0
+,💡 Nhập tỉ số Bảng B vào ô màu vàng (BT 1 & BT 2) để tự động cập nhật BXH.,,,,,,,,,📌 Top 2 đội dẫn đầu Bảng B (Nhất B & Nhì B) giành quyền vào vòng Bán kết.,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,⚔️ VÒNG BÁN KẾT (2 LƯỢT TRẬN: LƯỢT ĐI & LƯỢT VỀ),,,,,,,,,,,,,,,,,,
+,Vòng / Lượt,Ngày,Đội nhà,BT 1,-,BT 2,Đội khách,Trạng thái / Kết quả,,Thứ hạng danh hiệu,,,,Đội bóng đạt giải,,,,,
+,Bán kết 1 (Lượt đi),Trưa ngày 2,CORNER FC (ESP),,-,,ARSENAL ĂN 4 (BRA),Chưa đấu,,🥇 VÔ ĐỊCH,,,,Chờ Chung kết,,,,,
+,Bán kết 1 (Lượt về),Trưa ngày 2,ARSENAL ĂN 4 (BRA),,-,,CORNER FC (ESP),Chưa đấu,,🥈 Á QUÂN,,,,Chờ Chung kết,,,,,
+,BK1-Tổng,Tổng tỉ số BK 1,ARSENAL ĂN 4 (BRA) (Nhất A),,-,,CORNER FC (ESP) (Nhì B),Chờ thi đấu,,🥉 HẠNG BA,,,,Chờ Tranh Hạng Ba,,,,,
+,,Tổng tỉ số luân lưu (nếu có),,Chờ thi đấu,,,,,,,,,,,,,,,
+,Bán kết 2 (Lượt đi),Trưa ngày 2,OCEANSKY (POR),,-,,DAT BAO DNC (ARG),Chưa đấu,,🎖️ HẠNG TƯ,,,,Chờ Tranh Hạng Ba,,,,,
+,Bán kết 2 (Lượt về),Trưa ngày 2,DAT BAO DNC (ARG),,-,,OCEANSKY (POR),Chưa đấu,,🎖️ ĐỒNG HẠNG NĂM,,,,PHÔI FC (ENG) & KIHITO MADAM (FRA),,,,,
+,BK2-Tổng,Tổng tỉ số BK 2,DAT BAO DNC (ARG) (Nhất B),,-,,OCEANSKY (POR) (Nhì A),Chờ thi đấu,,🎉 Chúc mừng các đội bóng đã hoàn thành xuất sắc giải đấu!,,,,,,,,,
+,,Tổng tỉ số luân lưu (nếu có),,Chờ thi đấu,,,,,,,,,,,,,,,
+,"💡 Ghi chú: Thắng Bán kết vào Chung kết tranh Vô Địch 🏆, Thua Bán kết thi đấu Tranh Hạng Ba 🥉.",,,,,,,,,Cúp Vô Địch và các phần thưởng được trao tại Lễ Bế mạc trang trọng.,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+,⚔️ CHUNG KẾT & TRANH HẠNG BA (2 LƯỢT TRẬN: LƯỢT ĐI & LƯỢT VỀ),,,,,,,,,BẢNG TÍNH ĐIỂM DỮ LIỆU GỐC - BẢNG A (THỐNG KÊ CHI TIẾT),,,,,,,,,
+,Vòng / Lượt,Ngày,Đội nhà,BT 1,-,BT 2,Đội khách,Trạng thái / Kết quả,,STT,Đội bóng,ST,T,H,B,BT,BB,HS,Điểm
+,Chung kết (Lượt đi),Trưa ngày 3,Thắng BK 2,,-,,Thắng BK 1,Chưa đấu,,1,PHÔI FC (ENG),2,1,0,1,4,6,-2,3
+,Chung kết (Lượt về),Trưa ngày 3,Thắng BK 1,,-,,Thắng BK 2,Chưa đấu,,2,ARSENAL ĂN 4 (BRA),2,1,0,1,7,5,2,3
+,CK-Tổng,Tổng 2 lượt Chung kết,Thắng BK 1,,-,,Thắng BK 2,Chờ thi đấu,,3,OCEANSKY (POR),2,1,0,1,2,2,0,3
+,,Tổng tỉ số luân lưu (nếu có),,Chờ thi đấu,,,,,,,,,,,,,,,
+,Tranh Hạng 3 (Lượt đi),Trưa ngày 3,Thua BK 2,,-,,Thua BK 1,Chưa đấu,,BẢNG TÍNH ĐIỂM DỮ LIỆU GỐC - BẢNG B (THỐNG KÊ CHI TIẾT),,,,,,,,,
+,Tranh Hạng 3 (Lượt về),Trưa ngày 3,Thua BK 1,,-,,Thua BK 2,Chưa đấu,,1,KIHITO MADAM (FRA),2,0,0,2,3,8,-5,0
+,HB-Tổng,Tổng 2 lượt Tranh Hạng 3,Thua BK 1,,-,,Thua BK 2,Chờ thi đấu,,2,CORNER FC (ESP),2,1,0,1,4,10,-6,3
+,,Tổng tỉ số luân lưu (nếu có),,Chờ thi đấu,,,,,,3,DAT BAO DNC (ARG),2,2,0,0,13,2,11,6
+,"💡 Ghi chú: Nếu tổng tỉ số hòa sau 2 lượt trận, hai đội sẽ phân định bằng loạt sút luân lưu (Penalty).",,,,,,,,,Dữ liệu thống kê gốc tự động tổng hợp từ kết quả thi đấu và làm nguồn cho BXH chính thức.,,,,,,,,,

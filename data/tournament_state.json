@@ -1,0 +1,908 @@
+{
+  "teams": [
+    {
+      "id": "phoi_fc",
+      "name": "PHÔI FC",
+      "shortCode": "ENG",
+      "group": "A",
+      "nationalTeam": {
+        "name": "ENGLAND",
+        "code": "ENG",
+        "logo": "/logos/england.png"
+      },
+      "players": [
+        {
+          "id": "p_phoi_1",
+          "name": "Nguyễn Lê Đăng Khoa",
+          "teamId": "phoi_fc",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        },
+        {
+          "id": "p_phoi_2",
+          "name": "Nguyễn Minh Hào",
+          "teamId": "phoi_fc",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        }
+      ],
+      "stats": {
+        "played": 0,
+        "won": 0,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 0,
+        "goalsAgainst": 0,
+        "goalDifference": 0,
+        "points": 0,
+        "totalMatchesAll": 0,
+        "totalGoalsFor": 0,
+        "totalGoalsAgainst": 0,
+        "avgGoalsFor": 0,
+        "avgGoalsAgainst": 0
+      }
+    },
+    {
+      "id": "arsenal_an_4",
+      "name": "ARSENAL ĂN 4",
+      "shortCode": "BRA",
+      "group": "A",
+      "nationalTeam": {
+        "name": "BRAZIL",
+        "code": "BRA",
+        "logo": "/logos/brazil.png"
+      },
+      "players": [
+        {
+          "id": "p_arsenal_1",
+          "name": "Lê Tiến Thành",
+          "teamId": "arsenal_an_4",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        },
+        {
+          "id": "p_arsenal_2",
+          "name": "Lưu Xuân Bách",
+          "teamId": "arsenal_an_4",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        }
+      ],
+      "stats": {
+        "played": 0,
+        "won": 0,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 0,
+        "goalsAgainst": 0,
+        "goalDifference": 0,
+        "points": 0,
+        "totalMatchesAll": 0,
+        "totalGoalsFor": 0,
+        "totalGoalsAgainst": 0,
+        "avgGoalsFor": 0,
+        "avgGoalsAgainst": 0
+      }
+    },
+    {
+      "id": "oceansky",
+      "name": "OCEANSKY",
+      "shortCode": "POR",
+      "group": "A",
+      "nationalTeam": {
+        "name": "PORTUGAL",
+        "code": "POR",
+        "logo": "/logos/portugal.png"
+      },
+      "players": [
+        {
+          "id": "p_ocean_1",
+          "name": "Lương Công Tuấn",
+          "teamId": "oceansky",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        },
+        {
+          "id": "p_ocean_2",
+          "name": "Đặng Đại Dương Bảo",
+          "teamId": "oceansky",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        }
+      ],
+      "stats": {
+        "played": 0,
+        "won": 0,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 0,
+        "goalsAgainst": 0,
+        "goalDifference": 0,
+        "points": 0,
+        "totalMatchesAll": 0,
+        "totalGoalsFor": 0,
+        "totalGoalsAgainst": 0,
+        "avgGoalsFor": 0,
+        "avgGoalsAgainst": 0
+      }
+    },
+    {
+      "id": "dat_bao_dnc",
+      "name": "DAT BAO DNC",
+      "shortCode": "ARG",
+      "group": "B",
+      "nationalTeam": {
+        "name": "ARGENTINA",
+        "code": "ARG",
+        "logo": "/logos/argentina.png"
+      },
+      "players": [
+        {
+          "id": "p_datbao_1",
+          "name": "Trịnh Gia Bảo",
+          "teamId": "dat_bao_dnc",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        },
+        {
+          "id": "p_datbao_2",
+          "name": "Phan Tiến Đạt",
+          "teamId": "dat_bao_dnc",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        }
+      ],
+      "stats": {
+        "played": 0,
+        "won": 0,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 0,
+        "goalsAgainst": 0,
+        "goalDifference": 0,
+        "points": 0,
+        "totalMatchesAll": 0,
+        "totalGoalsFor": 0,
+        "totalGoalsAgainst": 0,
+        "avgGoalsFor": 0,
+        "avgGoalsAgainst": 0
+      }
+    },
+    {
+      "id": "corner_fc",
+      "name": "CORNER FC",
+      "shortCode": "ESP",
+      "group": "B",
+      "nationalTeam": {
+        "name": "SPAIN",
+        "code": "ESP",
+        "logo": "/logos/spain.png"
+      },
+      "players": [
+        {
+          "id": "p_corner_1",
+          "name": "Lưu Thái Hiệp",
+          "teamId": "corner_fc",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        },
+        {
+          "id": "p_corner_2",
+          "name": "Huỳnh Đăng Khoa",
+          "teamId": "corner_fc",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        }
+      ],
+      "stats": {
+        "played": 0,
+        "won": 0,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 0,
+        "goalsAgainst": 0,
+        "goalDifference": 0,
+        "points": 0,
+        "totalMatchesAll": 0,
+        "totalGoalsFor": 0,
+        "totalGoalsAgainst": 0,
+        "avgGoalsFor": 0,
+        "avgGoalsAgainst": 0
+      }
+    },
+    {
+      "id": "kihito_madam",
+      "name": "KIHITO MADAM",
+      "shortCode": "FRA",
+      "group": "B",
+      "nationalTeam": {
+        "name": "FRANCE",
+        "code": "FRA",
+        "logo": "/logos/france.png"
+      },
+      "players": [
+        {
+          "id": "p_kihito_1",
+          "name": "Lê Minh Hiển",
+          "teamId": "kihito_madam",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        },
+        {
+          "id": "p_kihito_2",
+          "name": "Trần Hữu Nguyên Khang",
+          "teamId": "kihito_madam",
+          "goals": 0,
+          "assists": 0,
+          "matchesPlayed": 0,
+          "yellowCards": 0,
+          "redCards": 0,
+          "breakdown": {
+            "goals": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "assists": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "yellowCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "redCards": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            },
+            "ga": {
+              "ovr": 0,
+              "knockout": 0,
+              "group": 0
+            }
+          }
+        }
+      ],
+      "stats": {
+        "played": 0,
+        "won": 0,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 0,
+        "goalsAgainst": 0,
+        "goalDifference": 0,
+        "points": 0,
+        "totalMatchesAll": 0,
+        "totalGoalsFor": 0,
+        "totalGoalsAgainst": 0,
+        "avgGoalsFor": 0,
+        "avgGoalsAgainst": 0
+      }
+    }
+  ],
+  "matches": [
+    {
+      "id": "m_ga_1",
+      "matchCode": "Vòng 1A",
+      "stage": "group_a",
+      "stageLabel": "Bảng A",
+      "roundName": "Vòng 1",
+      "homeTeamId": "phoi_fc",
+      "awayTeamId": "arsenal_an_4",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_gb_1",
+      "matchCode": "Vòng 1B",
+      "stage": "group_b",
+      "stageLabel": "Bảng B",
+      "roundName": "Vòng 1",
+      "homeTeamId": "kihito_madam",
+      "awayTeamId": "corner_fc",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_ga_2",
+      "matchCode": "Vòng 2A",
+      "stage": "group_a",
+      "stageLabel": "Bảng A",
+      "roundName": "Vòng 2",
+      "homeTeamId": "arsenal_an_4",
+      "awayTeamId": "oceansky",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_gb_2",
+      "matchCode": "Vòng 2B",
+      "stage": "group_b",
+      "stageLabel": "Bảng B",
+      "roundName": "Vòng 2",
+      "homeTeamId": "corner_fc",
+      "awayTeamId": "dat_bao_dnc",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_ga_3",
+      "matchCode": "Vòng 3A",
+      "stage": "group_a",
+      "stageLabel": "Bảng A",
+      "roundName": "Vòng 3",
+      "homeTeamId": "oceansky",
+      "awayTeamId": "phoi_fc",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_gb_3",
+      "matchCode": "Vòng 3B",
+      "stage": "group_b",
+      "stageLabel": "Bảng B",
+      "roundName": "Vòng 3",
+      "homeTeamId": "dat_bao_dnc",
+      "awayTeamId": "kihito_madam",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_semi1_1",
+      "matchCode": "BK 1 (Lượt đi)",
+      "stage": "semi",
+      "stageLabel": "Bán kết 1",
+      "roundName": "Lượt đi",
+      "leg": 1,
+      "pairId": "semi_1",
+      "homeTeamId": "corner_fc",
+      "awayTeamId": "arsenal_an_4",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_semi2_1",
+      "matchCode": "BK 2 (Lượt đi)",
+      "stage": "semi",
+      "stageLabel": "Bán kết 2",
+      "roundName": "Lượt đi",
+      "leg": 1,
+      "pairId": "semi_2",
+      "homeTeamId": "oceansky",
+      "awayTeamId": "dat_bao_dnc",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_semi1_2",
+      "matchCode": "BK 1 (Lượt về)",
+      "stage": "semi",
+      "stageLabel": "Bán kết 1",
+      "roundName": "Lượt về",
+      "leg": 2,
+      "pairId": "semi_1",
+      "homeTeamId": "arsenal_an_4",
+      "awayTeamId": "corner_fc",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_semi2_2",
+      "matchCode": "BK 2 (Lượt về)",
+      "stage": "semi",
+      "stageLabel": "Bán kết 2",
+      "roundName": "Lượt về",
+      "leg": 2,
+      "pairId": "semi_2",
+      "homeTeamId": "dat_bao_dnc",
+      "awayTeamId": "oceansky",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_h3_1",
+      "matchCode": "Tranh Hạng 3 (Lượt đi)",
+      "stage": "third_place",
+      "stageLabel": "Tranh Hạng 3",
+      "roundName": "Lượt đi",
+      "leg": 1,
+      "pairId": "third_place",
+      "homeTeamId": "thua_bk2",
+      "awayTeamId": "thua_bk1",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_h3_2",
+      "matchCode": "Tranh Hạng 3 (Lượt về)",
+      "stage": "third_place",
+      "stageLabel": "Tranh Hạng 3",
+      "roundName": "Lượt về",
+      "leg": 2,
+      "pairId": "third_place",
+      "homeTeamId": "thua_bk1",
+      "awayTeamId": "thua_bk2",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_ck_1",
+      "matchCode": "Chung kết (Lượt đi)",
+      "stage": "final",
+      "stageLabel": "Chung kết",
+      "roundName": "Lượt đi",
+      "leg": 1,
+      "pairId": "final",
+      "homeTeamId": "thang_bk2",
+      "awayTeamId": "thang_bk1",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    },
+    {
+      "id": "m_ck_2",
+      "matchCode": "Chung kết (Lượt về)",
+      "stage": "final",
+      "stageLabel": "Chung kết",
+      "roundName": "Lượt về",
+      "leg": 2,
+      "pairId": "final",
+      "homeTeamId": "thang_bk1",
+      "awayTeamId": "thang_bk2",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "statusText": "Chưa đấu",
+      "homeGoals": [],
+      "awayGoals": [],
+      "homePenalties": null,
+      "awayPenalties": null,
+      "homeCards": [],
+      "awayCards": []
+    }
+  ],
+  "podium": {
+    "champion": "Chờ Chung kết",
+    "runnerUp": "Chờ Chung kết",
+    "thirdPlace": "Chờ Tranh Hạng Ba",
+    "fourthPlace": "Chờ Tranh Hạng Ba",
+    "fifthPlace": []
+  },
+  "lastUpdated": "12:35:19 29/10/2026"
+}
