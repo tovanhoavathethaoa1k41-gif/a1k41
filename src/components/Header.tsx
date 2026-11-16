@@ -23,7 +23,8 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#060e0a]/90 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.7)] transition-all">
+    <>
+    <header className="relative z-30 w-full bg-[#060e0a]/90">
       {/* Top icy neon hairline */}
       <div className="h-[2px] w-full bg-gradient-to-r from-emerald-500 via-cyan-400 to-emerald-400 opacity-80" />
 
@@ -72,9 +73,13 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           )}
         </div>
+      </div>
+    </header>
 
-        {/* Navigation Tabs Bar */}
-        <nav className="flex items-center gap-1.5 sm:gap-2 pb-3 overflow-x-auto scrollbar-none">
+    {/* Thanh tab: dính ở mép trên khi cuộn (phần logo/tên giải cuộn đi, không chiếm chỗ nội dung) */}
+    <div className="sticky top-0 z-40 w-full bg-[#060e0a]/95 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.7)] pt-[env(safe-area-inset-top)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="flex items-center gap-1.5 sm:gap-2 py-2 overflow-x-auto scrollbar-none">
           {navTabs.map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -96,6 +101,7 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
       </div>
-    </header>
+    </div>
+    </>
   );
 };

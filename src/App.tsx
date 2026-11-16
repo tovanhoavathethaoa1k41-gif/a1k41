@@ -112,7 +112,7 @@ export default function App() {
   };
 
   return (
-    <div className={`relative min-h-screen text-slate-100 flex flex-col pitch-pattern overflow-x-hidden selection:bg-cyan-500 selection:text-black ${
+    <div className={`relative min-h-dvh text-slate-100 flex flex-col pitch-pattern overflow-x-clip selection:bg-cyan-500 selection:text-black ${
         isGold ? 'theme-gold bg-black' : 'bg-[#060b08]'
       }`}>
       {/* Subtle Winter Atmosphere */}

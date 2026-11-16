@@ -283,11 +283,11 @@ export const TeamsSection: React.FC<TeamsSectionProps> = ({ teams = [], matches 
       {selectedTeam && (
         <div
           onClick={() => setSelectedTeamId(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in"
+          className="modal-lock fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-3xl rounded-3xl bg-[#08120c]/95 border border-cyan-500/30 p-6 md:p-8 shadow-2xl max-h-[92vh] overflow-y-auto"
+            className="relative w-full max-w-3xl rounded-3xl bg-[#08120c]/95 border border-cyan-500/30 p-6 md:p-8 shadow-2xl max-h-[92dvh] overflow-y-auto overscroll-contain"
           >
             {/* Close Button */}
             <button

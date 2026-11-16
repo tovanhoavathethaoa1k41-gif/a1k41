@@ -781,7 +781,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in"
+      className="modal-lock fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in"
     >
       <div
         onClick={e => e.stopPropagation()}

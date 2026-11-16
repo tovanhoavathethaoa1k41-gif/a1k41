@@ -157,3 +157,46 @@ body.theme-gold-body {
   background: #d4a017;
   color: #000;
 }
+
+/* ================= Ổn định cảm ứng trên điện thoại ================= */
+html {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;       /* không vuốt ngang bật cả trang */
+  touch-action: manipulation;        /* chạm đúp không zoom */
+  -webkit-text-size-adjust: 100%;    /* không tự phóng chữ khi xoay máy */
+  -webkit-tap-highlight-color: transparent;
+  scroll-padding-top: 64px;          /* thanh tab cố định không che nội dung khi cuộn tới */
+}
+
+body {
+  overflow-x: clip;   /* clip (không phải hidden) để thanh tab cố định vẫn dính khi cuộn */
+  max-width: 100%;
+  overscroll-behavior-x: none;
+}
+
+/* Ô nhập liệu: cỡ chữ >= 16px thì iPhone/Android KHÔNG tự zoom khi chạm vào ô */
+@media (max-width: 1023px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Vùng cuộn ngang (thanh tab, sơ đồ, bảng): cuộn trong khung, không kéo theo cả trang */
+.overflow-x-auto {
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Cửa sổ nổi: khóa cuộn nền phía sau, cuộn trong cửa sổ không "tràn" ra ngoài */
+html:has(.modal-lock) {
+  overflow: hidden;
+}
+.modal-lock {
+  overscroll-behavior: contain;
+}
+.modal-lock .overflow-y-auto {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}

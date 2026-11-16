@@ -141,7 +141,7 @@ export const KnockoutSection: React.FC<KnockoutSectionProps> = ({ matches, teams
 
     return (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+        className="modal-lock fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
         onClick={() => setOpenTie(null)}
       >
         <div

@@ -118,11 +118,11 @@ export const MatchDetailModal: React.FC<MatchDetailModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in"
+      className="modal-lock fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in"
     >
       <div
         onClick={e => e.stopPropagation()}
-        className="relative w-full max-w-3xl rounded-3xl bg-[#08120c]/95 border border-cyan-500/30 shadow-[0_0_50px_rgba(34,211,238,0.15)] flex flex-col max-h-[92vh] overflow-hidden"
+        className="relative w-full max-w-3xl rounded-3xl bg-[#08120c]/95 border border-cyan-500/30 shadow-[0_0_50px_rgba(34,211,238,0.15)] flex flex-col max-h-[92dvh] overflow-hidden"
       >
         {/* Modal Top Header */}
         <div className="relative px-6 py-4 bg-gradient-to-r from-emerald-950/60 via-slate-950/90 to-cyan-950/60 border-b border-cyan-500/20 flex items-center justify-between shrink-0">
