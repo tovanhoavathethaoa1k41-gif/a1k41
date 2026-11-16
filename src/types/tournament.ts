@@ -130,3 +130,15 @@ export interface Podium {
   fourthPlace: string;
   fifthPlace: string[];
 }
+
+/**
+ * Một cầu thủ trong danh sách đề cử Quả Bóng Vàng. Số bàn thắng / kiến tạo / vị trí chung cuộc
+ * được tính tự động từ dữ liệu giải; admin chỉ nhập số phiếu bầu.
+ */
+export interface GoldenBallCandidate {
+  id: string;
+  teamId: string;
+  playerId: string;
+  name: string; // lưu kèm tên để vẫn hiển thị nếu cầu thủ bị xóa khỏi danh sách đội
+  votes: number;
+}

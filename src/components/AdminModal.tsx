@@ -11,7 +11,7 @@ import {
   ServerHealth,
   AUTH_EXPIRED_EVENT
 } from '../services/sheetSync';
-import { Team, GoalDetail, CardDetail, Player, PenaltyShootoutRound } from '../types/tournament';
+import { Team, GoalDetail, CardDetail, Player, PenaltyShootoutRound, GoldenBallCandidate } from '../types/tournament';
 import { recalculateAllStats, isPenaltyShootoutEligible } from '../utils/statsCalculator';
 import {
   Lock,
@@ -30,7 +30,8 @@ import {
   Target,
   AlertTriangle,
   Loader2,
-  Check
+  Check,
+  Trophy
 } from 'lucide-react';
 
 interface AdminModalProps {
@@ -180,12 +181,16 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   const editStateRef = useRef<TournamentState>(tournamentState);
 
   const [selectedMatchId, setSelectedMatchId] = useState<string>('');
-  const [activeAdminTab, setActiveAdminTab] = useState<'matches' | 'teams' | 'reset'>('matches');
+  const [activeAdminTab, setActiveAdminTab] = useState<'matches' | 'teams' | 'goldenball' | 'reset'>('matches');
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [isWiping, setIsWiping] = useState<boolean>(false);
   const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false);
 
   // Danh sách cầu thủ
+  // Quả Bóng Vàng
+  const [gbTeamId, setGbTeamId] = useState<string>('');
+  const [gbPlayerId, setGbPlayerId] = useState<string>('');
+  const [gbVotes, setGbVotes] = useState<string>('0');
   const [selectedRosterTeamId, setSelectedRosterTeamId] = useState<string>('');
   const [newPlayerName, setNewPlayerName] = useState<string>('');
 
@@ -460,6 +465,54 @@ export const AdminModal: React.FC<AdminModalProps> = ({
         target.awayScore = Math.max(0, (target.awayScore || 1) - 1);
       }
     });
+  };
+
+  /* ---------------- Quả Bóng Vàng ---------------- */
+
+  const handleAddCandidate = () => {
+    const team = editStateRef.current.teams.find(t => t.id === gbTeamId);
+    const player = team?.players.find(p => p.id === gbPlayerId);
+    if (!team || !player) {
+      showToast('Hãy chọn đội và cầu thủ để đề cử.', 'error');
+      return;
+    }
+    const exists = (editStateRef.current.goldenBall || []).some(
+      c => c.teamId === team.id && (c.playerId === player.id || c.name === player.name)
+    );
+    if (exists) {
+      showToast('Cầu thủ này đã có trong danh sách đề cử.', 'error');
+      return;
+    }
+    const votes = Math.max(0, Math.floor(Number(gbVotes) || 0));
+    const candidate: GoldenBallCandidate = {
+      id: `gb_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+      teamId: team.id,
+      playerId: player.id,
+      name: player.name,
+      votes
+    };
+    commitTournamentUpdate(prev => ({ ...prev, goldenBall: [...(prev.goldenBall || []), candidate] }));
+    setGbPlayerId('');
+    setGbVotes('0');
+    showToast(`Đã thêm ${player.name} vào danh sách đề cử Quả Bóng Vàng.`);
+  };
+
+  const handleRemoveCandidate = (id: string) => {
+    commitTournamentUpdate(prev => ({ ...prev, goldenBall: (prev.goldenBall || []).filter(c => c.id !== id) }));
+  };
+
+  // Gõ số phiếu: chỉ cập nhật nháp, bấm "Lưu số phiếu" mới gửi lên web
+  const handleCandidateVotesDraft = (id: string, value: string) => {
+    const votes = Math.max(0, Math.floor(Number(value) || 0));
+    updateDraft(prev => ({
+      ...prev,
+      goldenBall: (prev.goldenBall || []).map(c => (c.id === id ? { ...c, votes } : c))
+    }));
+  };
+
+  const handleSaveVotes = () => {
+    commitTournamentUpdate(prev => ({ ...prev }));
+    showToast('Đã lưu số phiếu Quả Bóng Vàng lên web.');
   };
 
   /* ---------------- Thẻ phạt ---------------- */
@@ -843,6 +896,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 {[
                   { id: 'matches' as const, label: 'Trận & Sự Kiện', icon: Calendar, danger: false },
                   { id: 'teams' as const, label: 'Cầu Thủ', icon: Users, danger: false },
+                  { id: 'goldenball' as const, label: 'Quả Bóng Vàng', icon: Trophy, danger: false },
                   { id: 'reset' as const, label: 'Đặt Lại', icon: RotateCcw, danger: true }
                 ].map(tab => {
                   const Icon = tab.icon;
@@ -1395,6 +1449,115 @@ export const AdminModal: React.FC<AdminModalProps> = ({
 
                   <p className="text-[11px] text-slate-500">
                     Thay đổi danh sách cầu thủ chỉ được gửi lên máy chủ khi bấm <strong>Lưu & Xuất Bản</strong>.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* TAB: QUẢ BÓNG VÀNG */}
+            {activeAdminTab === 'goldenball' && (
+              <div className="flex-1 min-h-0 p-3 sm:p-6 overflow-y-auto space-y-5">
+                <div className="p-3 sm:p-5 rounded-2xl bg-black/60 border border-amber-400/30 space-y-3">
+                  <h4 className="text-sm font-black text-amber-300 flex items-center gap-2">
+                    <Trophy className="w-4 h-4" />
+                    Thêm cầu thủ đề cử
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                    <select
+                      value={gbTeamId}
+                      onChange={e => {
+                        setGbTeamId(e.target.value);
+                        setGbPlayerId('');
+                      }}
+                      className="px-3 py-2 rounded-xl bg-slate-900 border border-amber-400/30 text-white"
+                    >
+                      <option value="">-- Chọn đội --</option>
+                      {editState.teams.map(t => (
+                        <option key={t.id} value={t.id}>{t.name}</option>
+                      ))}
+                    </select>
+                    <select
+                      value={gbPlayerId}
+                      onChange={e => setGbPlayerId(e.target.value)}
+                      disabled={!gbTeamId}
+                      className="px-3 py-2 rounded-xl bg-slate-900 border border-amber-400/30 text-white disabled:opacity-50"
+                    >
+                      <option value="">-- Chọn cầu thủ --</option>
+                      {(editState.teams.find(t => t.id === gbTeamId)?.players || []).map(p => (
+                        <option key={p.id} value={p.id}>{p.name}</option>
+                      ))}
+                    </select>
+                    <input
+                      type="number"
+                      min={0}
+                      value={gbVotes}
+                      onChange={e => setGbVotes(e.target.value)}
+                      placeholder="Số phiếu"
+                      className="px-3 py-2 rounded-xl bg-slate-900 border border-amber-400/30 text-white"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleAddCandidate}
+                    className="px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-300 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Thêm vào danh sách đề cử</span>
+                  </button>
+                </div>
+
+                <div className="p-3 sm:p-5 rounded-2xl bg-black/60 border border-amber-400/20 space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <h4 className="text-sm font-black text-white">
+                      Danh sách đề cử ({(editState.goldenBall || []).length})
+                    </h4>
+                    <button
+                      type="button"
+                      onClick={handleSaveVotes}
+                      className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-black text-xs flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <Save className="w-3.5 h-3.5" />
+                      <span>Lưu số phiếu</span>
+                    </button>
+                  </div>
+
+                  {(editState.goldenBall || []).length === 0 && (
+                    <p className="text-xs text-slate-500">Chưa có cầu thủ nào được đề cử.</p>
+                  )}
+
+                  <div className="space-y-2">
+                    {(editState.goldenBall || []).map(c => {
+                      const team = editState.teams.find(t => t.id === c.teamId);
+                      return (
+                        <div key={c.id} className="p-2.5 rounded-xl bg-slate-900/60 border border-amber-400/10 flex items-center gap-2 text-xs">
+                          <div className="min-w-0 flex-1">
+                            <div className="font-bold text-white break-words">{c.name}</div>
+                            <div className="text-[11px] text-slate-400">{team?.name || c.teamId}</div>
+                          </div>
+                          <input
+                            type="number"
+                            min={0}
+                            value={c.votes}
+                            onChange={e => handleCandidateVotesDraft(c.id, e.target.value)}
+                            className="w-20 px-2 py-1.5 rounded-lg bg-slate-950 border border-amber-400/30 text-amber-300 font-bold text-center"
+                            title="Số phiếu"
+                          />
+                          <span className="text-[11px] text-slate-500 shrink-0">phiếu</span>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveCandidate(c.id)}
+                            className="p-1 text-slate-500 hover:text-rose-400 cursor-pointer shrink-0"
+                            title="Xóa khỏi danh sách đề cử"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <p className="text-[11px] text-slate-500">
+                    Số bàn thắng, kiến tạo và vị trí chung cuộc được web tự tính. Sau khi sửa số phiếu, bấm <strong>Lưu số phiếu</strong>.
                   </p>
                 </div>
               </div>

@@ -17,6 +17,38 @@ interface PlayerStatsDetailed {
   ga: { ovr: number; knockout: number; group: number };
 }
 
+interface PeriodStats { goals: number; assists: number; yellow: number; red: number }
+
+/** Một dòng thống kê theo giai đoạn (Tổng / Knockout / Vòng bảng) - gọn, dễ đọc trên điện thoại. */
+const PeriodBlock: React.FC<{
+  title: string;
+  box: string;
+  titleColor: string;
+  goalColor: string;
+  assistColor: string;
+  s: PeriodStats;
+}> = ({ title, box, titleColor, goalColor, assistColor, s }) => (
+  <div className={`rounded-xl border p-2.5 sm:p-3 ${box}`}>
+    <div className={`text-[10px] font-black uppercase tracking-wider mb-2 ${titleColor}`}>{title}</div>
+    <div className="grid grid-cols-3 gap-1.5 text-center">
+      <div className="rounded-lg bg-black/40 py-1.5 px-1">
+        <div className="text-[10px] text-slate-400 leading-tight">Bàn thắng</div>
+        <div className={`font-score text-xl leading-none mt-1 font-bold ${goalColor}`}>{s.goals}</div>
+      </div>
+      <div className="rounded-lg bg-black/40 py-1.5 px-1">
+        <div className="text-[10px] text-slate-400 leading-tight">Kiến tạo</div>
+        <div className={`font-score text-xl leading-none mt-1 font-bold ${assistColor}`}>{s.assists}</div>
+      </div>
+      <div className="rounded-lg bg-black/40 py-1.5 px-1">
+        <div className="text-[10px] text-slate-400 leading-tight">Thẻ phạt</div>
+        <div className="text-sm leading-none mt-1.5 font-bold text-slate-200 whitespace-nowrap">
+          🟨{s.yellow} <span className="text-slate-600">·</span> 🟥{s.red}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 export const TeamsSection: React.FC<TeamsSectionProps> = ({ teams = [], matches = [] }) => {
   const [selectedTeamId, setSelectedTeamId] = useState<string | null>(null);
 
@@ -338,7 +370,7 @@ export const TeamsSection: React.FC<TeamsSectionProps> = ({ teams = [], matches 
                   return (
                     <div
                       key={player.id || player.name}
-                      className="p-5 rounded-2xl bg-black/60 border border-cyan-500/20 space-y-3"
+                      className="p-3 sm:p-5 rounded-2xl bg-black/60 border border-cyan-500/20 space-y-3"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-cyan-500/10 pb-2">
                         <div className="font-extrabold text-white text-base">
@@ -351,70 +383,32 @@ export const TeamsSection: React.FC<TeamsSectionProps> = ({ teams = [], matches 
                         </div>
                       </div>
 
-                      {/* Explicit Columns: OVR -> Knockout -> Vòng Bảng */}
-                      <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                        {/* 1. OVR */}
-                        <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30">
-                          <div className="text-[10px] font-black uppercase tracking-wider text-emerald-400 mb-1">
-                            1. Tổng thể OVR
-                          </div>
-                          <div className="space-y-1 font-bold text-slate-200 text-xs">
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Bàn thắng:</span>
-                              <span className="text-emerald-400">{stats.goals.ovr} ⚽</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Kiến tạo:</span>
-                              <span className="text-teal-300">{stats.assists.ovr} 🅰️</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Thẻ phạt:</span>
-                              <span>{stats.yellowCards.ovr} 🟨 · {stats.redCards.ovr} 🟥</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* 2. VÒNG KNOCKOUT */}
-                        <div className="p-3 rounded-xl bg-cyan-950/20 border border-cyan-500/30">
-                          <div className="text-[10px] font-black uppercase tracking-wider text-cyan-300 mb-1">
-                            2. Vòng Knockout
-                          </div>
-                          <div className="space-y-1 font-bold text-slate-200 text-xs">
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Bàn thắng:</span>
-                              <span className="text-cyan-300">{stats.goals.knockout} ⚽</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Kiến tạo:</span>
-                              <span className="text-cyan-300">{stats.assists.knockout} 🅰️</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Thẻ phạt:</span>
-                              <span>{stats.yellowCards.knockout} 🟨 · {stats.redCards.knockout} 🟥</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* 3. VÒNG BẢNG */}
-                        <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-700/60">
-                          <div className="text-[10px] font-black uppercase tracking-wider text-slate-300 mb-1">
-                            3. Vòng Bảng
-                          </div>
-                          <div className="space-y-1 font-bold text-slate-200 text-xs">
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Bàn thắng:</span>
-                              <span className="text-slate-200">{stats.goals.group} ⚽</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Kiến tạo:</span>
-                              <span className="text-slate-200">{stats.assists.group} 🅰️</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-slate-400">Thẻ phạt:</span>
-                              <span>{stats.yellowCards.group} 🟨 · {stats.redCards.group} 🟥</span>
-                            </div>
-                          </div>
-                        </div>
+                      {/* Mỗi giai đoạn một dòng (điện thoại) / 3 khối cạnh nhau (màn hình lớn) */}
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+                        <PeriodBlock
+                          title="Tổng thể"
+                          box="bg-emerald-950/20 border-emerald-500/30"
+                          titleColor="text-emerald-400"
+                          goalColor="text-emerald-400"
+                          assistColor="text-teal-300"
+                          s={{ goals: stats.goals.ovr, assists: stats.assists.ovr, yellow: stats.yellowCards.ovr, red: stats.redCards.ovr }}
+                        />
+                        <PeriodBlock
+                          title="Vòng Knockout"
+                          box="bg-cyan-950/20 border-cyan-500/30"
+                          titleColor="text-cyan-300"
+                          goalColor="text-cyan-300"
+                          assistColor="text-cyan-300"
+                          s={{ goals: stats.goals.knockout, assists: stats.assists.knockout, yellow: stats.yellowCards.knockout, red: stats.redCards.knockout }}
+                        />
+                        <PeriodBlock
+                          title="Vòng Bảng"
+                          box="bg-slate-900/60 border-slate-700/60"
+                          titleColor="text-slate-300"
+                          goalColor="text-slate-200"
+                          assistColor="text-slate-200"
+                          s={{ goals: stats.goals.group, assists: stats.assists.group, yellow: stats.yellowCards.group, red: stats.redCards.group }}
+                        />
                       </div>
                     </div>
                   );

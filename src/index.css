@@ -71,3 +71,89 @@
 .animate-spin-slow {
   animation: spinSlow 20s linear infinite;
 }
+
+/* ================= Giao diện VÀNG GOLD cho tab Quả Bóng Vàng =================
+   Tailwind v4 dùng biến --color-*; ghi đè các biến xanh thành dải màu vàng gold
+   trong phạm vi .theme-gold nên toàn bộ trang tự đổi sang vàng. */
+.theme-gold {
+  --color-cyan-50: #fff8e1;
+  --color-cyan-100: #ffefb8;
+  --color-cyan-200: #fbe38a;
+  --color-cyan-300: #f5d060;
+  --color-cyan-400: #e8bd3a;
+  --color-cyan-500: #d4a017;
+  --color-cyan-600: #b8860b;
+  --color-cyan-700: #8a6508;
+  --color-cyan-800: #5c4306;
+  --color-cyan-900: #3b2b04;
+  --color-cyan-950: #1f1702;
+  --color-emerald-50: #fff8e1;
+  --color-emerald-100: #ffefb8;
+  --color-emerald-200: #fbe38a;
+  --color-emerald-300: #f5d060;
+  --color-emerald-400: #e8bd3a;
+  --color-emerald-500: #d4a017;
+  --color-emerald-600: #b8860b;
+  --color-emerald-700: #8a6508;
+  --color-emerald-800: #5c4306;
+  --color-emerald-900: #3b2b04;
+  --color-emerald-950: #1f1702;
+  --color-teal-50: #fff8e1;
+  --color-teal-100: #ffefb8;
+  --color-teal-200: #fbe38a;
+  --color-teal-300: #f5d060;
+  --color-teal-400: #e8bd3a;
+  --color-teal-500: #d4a017;
+  --color-teal-600: #b8860b;
+  --color-teal-700: #8a6508;
+  --color-teal-800: #5c4306;
+  --color-teal-900: #3b2b04;
+  --color-teal-950: #1f1702;
+  --color-sky-50: #fff8e1;
+  --color-sky-100: #ffefb8;
+  --color-sky-200: #fbe38a;
+  --color-sky-300: #f5d060;
+  --color-sky-400: #e8bd3a;
+  --color-sky-500: #d4a017;
+  --color-sky-600: #b8860b;
+  --color-sky-700: #8a6508;
+  --color-sky-800: #5c4306;
+  --color-sky-900: #3b2b04;
+  --color-sky-950: #1f1702;
+  --color-green-50: #fff8e1;
+  --color-green-100: #ffefb8;
+  --color-green-200: #fbe38a;
+  --color-green-300: #f5d060;
+  --color-green-400: #e8bd3a;
+  --color-green-500: #d4a017;
+  --color-green-600: #b8860b;
+  --color-green-700: #8a6508;
+  --color-green-800: #5c4306;
+  --color-green-900: #3b2b04;
+  --color-green-950: #1f1702;
+}
+
+body.theme-gold-body {
+  background-color: #000;
+}
+
+.theme-gold.pitch-pattern {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.10) 0%, rgba(120, 80, 0, 0.06) 40%, transparent 70%),
+    linear-gradient(to right, rgba(255, 215, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 215, 0, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* Các nền xanh viết cứng bằng mã màu -> đổi sang đen/nâu rất đậm */
+.theme-gold [class*="#08120c"],
+.theme-gold [class*="#060e0a"],
+.theme-gold [class*="#060b08"],
+.theme-gold [class*="#09130e"] {
+  background-color: rgba(8, 6, 0, 0.9) !important;
+}
+
+.theme-gold ::selection {
+  background: #d4a017;
+  color: #000;
+}

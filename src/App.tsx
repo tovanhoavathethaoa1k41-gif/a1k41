@@ -8,6 +8,8 @@ import { TeamsSection } from './components/TeamsSection';
 import { StatsSection } from './components/StatsSection';
 import { AdminModal } from './components/AdminModal';
 import { SnowfallOverlay } from './components/SnowfallOverlay';
+import { GoldenDustOverlay } from './components/GoldenDustOverlay';
+import { GoldenBallSection } from './components/GoldenBallSection';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import {
   getStoredState,
@@ -97,14 +99,24 @@ export default function App() {
     }, 4000);
   };
 
+  const isGold = activeTab === 'goldenball';
+
+  // Nền đen cho cả trang khi ở tab Quả Bóng Vàng (kể cả vùng kéo quá mép trên điện thoại)
+  useEffect(() => {
+    document.body.classList.toggle('theme-gold-body', isGold);
+    return () => document.body.classList.remove('theme-gold-body');
+  }, [isGold]);
+
   const handleStateUpdated = (newState: TournamentState) => {
     setTournamentState(newState);
   };
 
   return (
-    <div className="relative min-h-screen bg-[#060b08] text-slate-100 flex flex-col pitch-pattern overflow-x-hidden selection:bg-cyan-500 selection:text-black">
+    <div className={`relative min-h-screen text-slate-100 flex flex-col pitch-pattern overflow-x-hidden selection:bg-cyan-500 selection:text-black ${
+        isGold ? 'theme-gold bg-black' : 'bg-[#060b08]'
+      }`}>
       {/* Subtle Winter Atmosphere */}
-      <SnowfallOverlay />
+      {isGold ? <GoldenDustOverlay /> : <SnowfallOverlay />}
 
       {/* Toast Notification */}
       {toastMessage && (
@@ -192,6 +204,22 @@ export default function App() {
                 transition={{ duration: 0.2, ease: 'easeOut' }}
               >
                 <StatsSection teams={tournamentState.teams} matches={tournamentState.matches} />
+              </motion.div>
+            )}
+
+            {activeTab === 'goldenball' && (
+              <motion.div
+                key="tab-goldenball"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+              >
+                <GoldenBallSection
+                  teams={tournamentState.teams}
+                  podium={tournamentState.podium}
+                  candidates={tournamentState.goldenBall || []}
+                />
               </motion.div>
             )}
           </AnimatePresence>

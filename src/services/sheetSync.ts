@@ -1,4 +1,4 @@
-import { Team, Match, Podium, GoalDetail, CardDetail, PenaltyShootoutRound } from '../types/tournament';
+import { Team, Match, Podium, GoalDetail, CardDetail, PenaltyShootoutRound, GoldenBallCandidate } from '../types/tournament';
 import { INITIAL_TEAMS, INITIAL_MATCHES, INITIAL_PODIUM } from '../data/initialData';
 import { recalculateAllStats, sortMatchesByCanonicalOrder } from '../utils/statsCalculator';
 
@@ -6,6 +6,7 @@ export interface TournamentState {
   teams: Team[];
   matches: Match[];
   podium: Podium;
+  goldenBall?: GoldenBallCandidate[]; // danh sách đề cử Quả Bóng Vàng + số phiếu
   lastUpdated?: string;
 }
 
@@ -311,6 +312,7 @@ export async function resetTournamentScoresAndStandings(currentState?: Tournamen
     teams,
     matches,
     podium: resetPodium,
+    goldenBall: activeState.goldenBall,
     lastUpdated: new Date().toISOString()
   };
 

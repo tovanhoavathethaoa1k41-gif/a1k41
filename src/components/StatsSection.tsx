@@ -162,9 +162,10 @@ export const StatsSection: React.FC<StatsSectionProps> = ({ teams, matches }) =>
     .filter(p => p.goals.ovr > 0)
     .sort((a, b) => {
       if (b.goals.ovr !== a.goals.ovr) return b.goals.ovr - a.goals.ovr;
+      // Bằng tổng bàn thắng: cầu thủ có ÍT penalty hơn xếp trên (xét ngầm, không ghi chú trên web)
+      if (a.goals.penalty !== b.goals.penalty) return a.goals.penalty - b.goals.penalty;
       if (b.goals.knockout !== a.goals.knockout) return b.goals.knockout - a.goals.knockout;
-      if (b.goals.group !== a.goals.group) return b.goals.group - a.goals.group;
-      return b.goals.penalty - a.goals.penalty;
+      return b.goals.group - a.goals.group;
     });
 
   // Top Assists: Priority OVR -> Knockout -> Group
@@ -468,7 +469,7 @@ export const StatsSection: React.FC<StatsSectionProps> = ({ teams, matches }) =>
                     <th className="py-3 px-4 text-center font-black text-emerald-400">Tổng bàn thắng</th>
                     <th className="py-3 px-4 text-center font-bold text-cyan-300">Vòng Knockout</th>
                     <th className="py-3 px-4 text-center font-bold text-slate-300">Vòng Bảng</th>
-                    <th className="py-3 px-4 text-center font-bold text-teal-300">Tổng G+A</th>
+                    <th className="py-3 px-4 text-center font-bold text-teal-300">Penalty</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-cyan-500/10">
@@ -496,7 +497,7 @@ export const StatsSection: React.FC<StatsSectionProps> = ({ teams, matches }) =>
                         {p.goals.group}
                       </td>
                       <td className="py-3.5 px-4 text-center font-mono font-extrabold text-teal-300 text-sm">
-                        {p.ga.ovr}
+                        {p.goals.penalty}
                       </td>
                     </tr>
                   ))}

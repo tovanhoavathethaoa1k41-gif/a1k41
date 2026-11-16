@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Table, GitCommit, Users, BarChart3, Snowflake, Lock } from 'lucide-react';
+import { Calendar, Table, GitCommit, Users, BarChart3, Snowflake, Lock, Trophy } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: string;
@@ -18,7 +18,8 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'standings', label: 'Bảng Xếp Hạng', icon: Table },
     { id: 'knockout', label: 'Vòng Knockout', icon: GitCommit },
     { id: 'teams', label: 'Đội & Cầu Thủ', icon: Users },
-    { id: 'stats', label: 'Thống Kê Giải', icon: BarChart3 }
+    { id: 'stats', label: 'Thống Kê Giải', icon: BarChart3 },
+    { id: 'goldenball', label: 'Quả Bóng Vàng', icon: Trophy }
   ];
 
   return (
