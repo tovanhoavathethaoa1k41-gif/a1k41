@@ -1,0 +1,26 @@
+{
+  "name": "A1K41 Winter Cup",
+  "short_name": "A1K41 Cup",
+  "description": "Tỉ số, bảng xếp hạng, sơ đồ knock-out và thống kê giải A1K41 Winter Cup.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#060b08",
+  "theme_color": "#00c58a",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Match, Team, Podium } from '../types/tournament';
 import { TeamBadge } from './TeamBadge';
 import { MatchDetailModal } from './MatchDetailModal';
-import { calculateKnockoutAggregate, getLeg2AggregateDisplay } from '../utils/statsCalculator';
-import { Trophy, GitCommit } from 'lucide-react';
+import { calculateKnockoutAggregate } from '../utils/statsCalculator';
+import { Trophy, GitCommit, X, ChevronRight } from 'lucide-react';
 
 interface KnockoutSectionProps {
   matches: Match[];
@@ -13,6 +13,8 @@ interface KnockoutSectionProps {
 
 export const KnockoutSection: React.FC<KnockoutSectionProps> = ({ matches, teams, podium }) => {
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+  // Cặp đấu đang được mở để chọn lượt đi / lượt về
+  const [openTie, setOpenTie] = useState<{ title: string; legs: Match[] } | null>(null);
 
   const getTeam = (id: string) => teams.find(t => t.id === id);
 
@@ -36,144 +38,129 @@ export const KnockoutSection: React.FC<KnockoutSectionProps> = ({ matches, teams
   const finalMatches = matches.filter(m => m.pairId === 'final');
   const thirdPlaceMatches = matches.filter(m => m.pairId === 'third_place');
 
-  const renderTwoLegTie = (title: string, subtitle: string, tieMatches: Match[], badgeColor: string) => {
+  /** Thẻ gọn trong sơ đồ: hiện tổng tỉ số 2 lượt, bấm để chọn xem lượt đi / lượt về. */
+  const renderTieNode = (title: string, tieMatches: Match[], accent: string, highlight = false) => {
     const leg1 = tieMatches.find(m => m.leg === 1);
     const leg2 = tieMatches.find(m => m.leg === 2);
-
     if (!leg1 || !leg2) return null;
 
     const agg = calculateKnockoutAggregate(leg1, leg2);
-    const leg2AggDisplay = getLeg2AggregateDisplay(leg1, leg2);
+    const anyPlayed = [leg1, leg2].some(
+      m => m.status === 'completed' && m.homeScore !== null && m.awayScore !== null
+    );
+    const team1Id = leg1.homeTeamId;
+    const team2Id = leg1.awayTeamId;
+    const hasPens =
+      !!agg &&
+      agg.team1Penalties !== null && agg.team1Penalties !== undefined &&
+      agg.team2Penalties !== null && agg.team2Penalties !== undefined;
 
-    const renderLegCard = (match: Match, isLeg2: boolean) => {
-      const isCompleted = match.status === 'completed' && match.homeScore !== null && match.awayScore !== null;
-      const homeTeam = getTeam(match.homeTeamId);
-      const awayTeam = getTeam(match.awayTeamId);
-
+    const row = (teamId: string, score: number | undefined, pen: number | null | undefined) => {
+      const isWinner = !!agg?.isCompleted && agg.winnerId === teamId;
       return (
-        <div
-          onClick={() => setSelectedMatch(match)}
-          className="p-3.5 sm:p-5 rounded-2xl bg-black/60 border border-cyan-500/15 hover:border-cyan-400/40 transition-all shadow-lg shadow-black/40 space-y-3 sm:space-y-4 cursor-pointer"
-        >
-          <div className="flex items-center justify-between pb-2.5 border-b border-cyan-500/10">
-            <span className="font-extrabold text-cyan-400 text-xs uppercase tracking-wider">
-              {isLeg2 ? 'Trận Lượt Về' : 'Trận Lượt Đi'}
-            </span>
+        <div className="flex items-center justify-between gap-2 py-1.5">
+          <div className={`min-w-0 flex-1 ${isWinner ? '' : agg?.isCompleted ? 'opacity-60' : ''}`}>
+            <TeamBadge
+              team={getTeam(teamId)}
+              placeholderName={getTeamLabel(teamId)}
+              layout="horizontal"
+              align="left"
+              logoPosition="left"
+              size="sm"
+            />
           </div>
-
-          {/* 3-Column Pitch Presentation: Home (5) - Score/VS (2) - Away (5) */}
-          {/* YÊU CẦU: Logo ở trên, tên đội ở dưới, tên đội và logo căn giữa */}
-          <div className="grid grid-cols-12 items-center gap-2">
-            {/* Home Team: Logo ở trên, tên đội ở dưới, căn giữa */}
-            <div className="col-span-5 flex items-center justify-center">
-              <TeamBadge
-                team={homeTeam}
-                placeholderName={getTeamLabel(match.homeTeamId)}
-                layout="vertical"
-                size="md"
-              />
-            </div>
-
-            {/* Central Axis: Tỉ số hoặc VS + Chi tiết */}
-            <div className="col-span-2 flex flex-col items-center justify-center">
-              {isCompleted ? (
-                <div className="flex items-center gap-1.5 sm:gap-2 bg-black/80 px-2.5 sm:px-3.5 py-1.5 rounded-xl border border-emerald-500/40 shadow-inner">
-                  <span className="font-score text-xl sm:text-3xl font-black text-emerald-400 text-glow">
-                    {match.homeScore}
-                  </span>
-                  <span className="text-xs font-bold text-slate-500">-</span>
-                  <span className="font-score text-xl sm:text-3xl font-black text-emerald-400 text-glow">
-                    {match.awayScore}
-                  </span>
-                </div>
-              ) : (
-                <div className="px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-300 font-bold text-xs tracking-widest">
-                  VS
-                </div>
-              )}
-
-              {/* Loạt sút luân lưu (Penalty): ẨN CHI TIẾT NGOÀI MÀN HÌNH CHÍNH, chỉ hiển thị tỷ số gọn gàng */}
-              {match.homePenalties !== undefined && match.homePenalties !== null && (
-                <span className="text-[11px] text-amber-300 mt-1 font-mono font-bold whitespace-nowrap px-2 py-0.5 rounded-md bg-amber-500/15 border border-amber-500/30 shadow-sm">
-                  (Pen: {match.homePenalties} - {match.awayPenalties})
-                </span>
-              )}
-
-              {/* Lượt về: Tổng 2 lượt (Aggregate) nhỏ ngay bên dưới */}
-              {isLeg2 && leg2AggDisplay && (
-                <div className="mt-1 px-2 py-0.5 rounded-md bg-cyan-950/60 border border-cyan-500/30 text-[9px] sm:text-[10px] font-bold text-cyan-300 whitespace-nowrap">
-                  {leg2AggDisplay}
-                </div>
-              )}
-            </div>
-
-            {/* Away Team: Logo ở trên, tên đội ở dưới, căn giữa */}
-            <div className="col-span-5 flex items-center justify-center">
-              <TeamBadge
-                team={awayTeam}
-                placeholderName={getTeamLabel(match.awayTeamId)}
-                layout="vertical"
-                size="md"
-              />
-            </div>
+          <div className="flex items-baseline gap-1 shrink-0">
+            <span className={`font-score text-2xl font-black leading-none ${isWinner ? 'text-emerald-400 text-glow' : 'text-slate-200'}`}>
+              {anyPlayed && score !== undefined ? score : '-'}
+            </span>
+            {hasPens && pen !== null && pen !== undefined && (
+              <span className="text-[10px] font-bold text-amber-300">({pen})</span>
+            )}
           </div>
         </div>
       );
     };
 
     return (
-      <div className="rounded-2xl bg-gradient-to-b from-[#0b1611]/90 to-[#070e0a]/90 border border-cyan-500/20 shadow-xl shadow-black/40 p-4 sm:p-6 space-y-4">
-        {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-cyan-500/10">
-          <div>
-            <span className={`text-[11px] font-bold uppercase tracking-wider ${badgeColor}`}>
-              {subtitle}
-            </span>
-            <h3 className="text-lg md:text-xl font-black text-white">{title}</h3>
-          </div>
-          <div className="text-[11px] px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-cyan-300 font-bold">
-            Thể thức 2 lượt
-          </div>
+      <button
+        type="button"
+        onClick={() => setOpenTie({ title, legs: [leg1, leg2] })}
+        className={`w-full text-left rounded-2xl bg-gradient-to-b from-[#0b1611]/95 to-[#070e0a]/95 border p-3 shadow-lg shadow-black/40 transition-all cursor-pointer hover:border-cyan-400/60 ${
+          highlight ? 'border-emerald-500/50' : 'border-cyan-500/25'
+        }`}
+      >
+        <div className="flex items-center justify-between pb-1.5 mb-1 border-b border-cyan-500/10">
+          <span className={`text-[11px] font-black uppercase tracking-wider ${accent}`}>{title}</span>
+          <span className="text-[10px] text-slate-500 flex items-center gap-0.5">
+            Tổng 2 lượt <ChevronRight className="w-3 h-3" />
+          </span>
         </div>
+        {row(team1Id, agg?.team1Score, agg?.team1Penalties)}
+        {row(team2Id, agg?.team2Score, agg?.team2Penalties)}
+      </button>
+    );
+  };
 
-        {/* Leg 1 & Leg 2 Match Cards */}
-        {renderLegCard(leg1, false)}
-        {renderLegCard(leg2, true)}
-
-        {/* Aggregate Overall Box */}
-        <div className="p-3.5 rounded-xl bg-cyan-950/20 border border-cyan-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div>
-            <div className="text-[11px] font-bold uppercase tracking-wider text-cyan-300">
-              Tổng tỉ số sau 2 lượt trận
+  /** Cửa sổ nhỏ để chọn xem trận lượt đi hoặc lượt về. */
+  const renderTiePicker = () => {
+    if (!openTie) return null;
+    const [leg1, leg2] = openTie.legs;
+    const legButton = (m: Match, label: string) => {
+      const played = m.status === 'completed' && m.homeScore !== null && m.awayScore !== null;
+      return (
+        <button
+          type="button"
+          key={m.id}
+          onClick={() => {
+            setOpenTie(null);
+            setSelectedMatch(m);
+          }}
+          className="w-full p-3 rounded-xl bg-black/60 border border-cyan-500/20 hover:border-cyan-400/60 transition-all cursor-pointer text-left"
+        >
+          <div className="text-[11px] font-black uppercase tracking-wider text-cyan-400 mb-2">{label}</div>
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <TeamBadge team={getTeam(m.homeTeamId)} placeholderName={getTeamLabel(m.homeTeamId)} layout="horizontal" align="left" logoPosition="left" size="sm" />
             </div>
-            <div className="text-xs text-slate-400 mt-0.5">
-              {agg?.isCompleted ? (
-                <span>
-                  Đội thắng:{' '}
-                  <span className="font-bold text-emerald-400">
-                    {getTeamLabel(agg.winnerId || '')}
-                  </span>
-                </span>
-              ) : (
-                'Chưa hoàn tất cả 2 lượt trận'
-              )}
+            <div className="shrink-0 px-2.5 py-1 rounded-lg bg-black/80 border border-emerald-500/30 font-score text-xl font-black text-emerald-400">
+              {played ? `${m.homeScore} - ${m.awayScore}` : 'VS'}
+            </div>
+            <div className="min-w-0 flex-1">
+              <TeamBadge team={getTeam(m.awayTeamId)} placeholderName={getTeamLabel(m.awayTeamId)} layout="horizontal" align="right" logoPosition="right" size="sm" />
             </div>
           </div>
+          {m.homePenalties !== undefined && m.homePenalties !== null && (
+            <div className="text-center text-[11px] font-bold text-amber-300 mt-1.5">
+              (Pen: {m.homePenalties} - {m.awayPenalties})
+            </div>
+          )}
+          <div className="text-[10px] text-slate-500 mt-1.5 text-center">Bấm để xem chi tiết trận</div>
+        </button>
+      );
+    };
 
-          <div className="flex items-center gap-2">
-            {/* Font Teko (font-score) không có chữ "ổ" tiếng Việt -> chữ "Tổng" dùng font thường, chỉ số mới dùng font-score */}
-            <span className="inline-flex items-baseline gap-1.5 px-3 py-1 rounded-lg bg-black/60 border border-cyan-500/30 text-cyan-300 font-black">
-              <span className="text-xs md:text-sm font-bold">Tổng:</span>
-              <span className="font-score text-base md:text-lg">
-                {agg ? `${agg.team1Score} - ${agg.team2Score}` : '-'}
-              </span>
-              {agg && agg.team1Penalties !== null && agg.team1Penalties !== undefined && agg.team2Penalties !== null && agg.team2Penalties !== undefined && (
-                <span className="text-xs md:text-sm font-bold text-amber-300">
-                  (Pen: <span className="font-score text-base md:text-lg">{agg.team1Penalties} - {agg.team2Penalties}</span>)
-                </span>
-              )}
-            </span>
+    return (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+        onClick={() => setOpenTie(null)}
+      >
+        <div
+          className="w-full max-w-md rounded-2xl bg-[#08120c] border border-cyan-500/30 p-4 sm:p-5 space-y-3 shadow-2xl"
+          onClick={e => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-black text-white">{openTie.title}</h3>
+            <button
+              type="button"
+              onClick={() => setOpenTie(null)}
+              className="p-1 text-slate-400 hover:text-white cursor-pointer"
+              aria-label="Đóng"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
+          {legButton(leg1, 'Trận Lượt Đi')}
+          {legButton(leg2, 'Trận Lượt Về')}
         </div>
       </div>
     );
@@ -297,20 +284,46 @@ export const KnockoutSection: React.FC<KnockoutSectionProps> = ({ matches, teams
         </div>
       )}
 
-      {/* Grid of Knockout Ties */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Semi-Final 1 */}
-        {renderTwoLegTie('Bán Kết 1', 'Bán Kết · 2 Lượt', semi1Matches, 'text-cyan-400')}
+      {/* Sơ đồ nhánh đấu: Bán kết -> Chung kết, Tranh hạng ba bên dưới. Vuốt ngang nếu màn hình hẹp */}
+      <div className="overflow-x-auto pb-2 -mx-1 px-1">
+        <div className="min-w-[560px] space-y-6">
+          <div className="grid grid-cols-[1fr_36px_1fr] items-stretch">
+            {/* Cột Bán kết */}
+            <div className="flex flex-col justify-around gap-4">
+              {renderTieNode('Bán Kết 1', semi1Matches, 'text-cyan-400')}
+              {renderTieNode('Bán Kết 2', semi2Matches, 'text-cyan-400')}
+            </div>
 
-        {/* Semi-Final 2 */}
-        {renderTwoLegTie('Bán Kết 2', 'Bán Kết · 2 Lượt', semi2Matches, 'text-cyan-400')}
+            {/* Đường nối nhánh */}
+            <div className="relative" aria-hidden="true">
+              <div className="absolute top-1/4 left-0 w-1/2 border-t-2 border-cyan-500/40" />
+              <div className="absolute top-3/4 left-0 w-1/2 border-t-2 border-cyan-500/40" />
+              <div className="absolute top-1/4 bottom-1/4 left-1/2 border-l-2 border-cyan-500/40" />
+              <div className="absolute top-1/2 left-1/2 right-0 border-t-2 border-cyan-500/40" />
+            </div>
 
-        {/* Third Place Playoff */}
-        {renderTwoLegTie('Tranh Hạng Ba', 'Tranh Hạng 3 & 4 · 2 Lượt', thirdPlaceMatches, 'text-amber-500')}
+            {/* Cột Chung kết */}
+            <div className="flex flex-col justify-center">
+              {renderTieNode('Chung Kết', finalMatches, 'text-emerald-400', true)}
+            </div>
+          </div>
 
-        {/* Final */}
-        {renderTwoLegTie('Chung Kết Vô Địch', 'Trận Chung Kết · 2 Lượt', finalMatches, 'text-emerald-400')}
+          {/* Tranh hạng ba: cùng cột với Chung kết */}
+          <div className="grid grid-cols-[1fr_36px_1fr] items-start">
+            <div className="flex items-center text-[11px] font-bold uppercase tracking-wider text-slate-500 pt-3">
+              Hai đội thua bán kết đấu tranh hạng ba
+            </div>
+            <div />
+            <div>{renderTieNode('Tranh Hạng Ba', thirdPlaceMatches, 'text-amber-500')}</div>
+          </div>
+        </div>
       </div>
+
+      <p className="text-[11px] text-slate-500 text-center">
+        Bấm vào một cặp đấu để chọn xem trận lượt đi hoặc lượt về.
+      </p>
+
+      {renderTiePicker()}
 
       {/* Match Detail Modal */}
       <MatchDetailModal
