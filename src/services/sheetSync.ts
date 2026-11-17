@@ -1,6 +1,6 @@
 import { Team, Match, Podium, GoalDetail, CardDetail, PenaltyShootoutRound, GoldenBallCandidate } from '../types/tournament';
 import { INITIAL_TEAMS, INITIAL_MATCHES, INITIAL_PODIUM } from '../data/initialData';
-import { recalculateAllStats, sortMatchesByCanonicalOrder } from '../utils/statsCalculator';
+import { recalculateAllStats, sortMatchesByCanonicalOrder, normalizeGroupBSchedule } from '../utils/statsCalculator';
 
 export interface TournamentState {
   teams: Team[];
@@ -88,6 +88,7 @@ export async function fetchServerTournamentState(): Promise<TournamentState | nu
 
       if (data.success && data.hasState && data.state) {
         if (Array.isArray(data.state.matches)) {
+          normalizeGroupBSchedule(data.state.matches);
           data.state.matches = sortMatchesByCanonicalOrder(data.state.matches);
         }
         if (Array.isArray(data.state.teams)) {
@@ -395,6 +396,10 @@ export function getStoredState(): TournamentState {
           parsed.podium = JSON.parse(JSON.stringify(INITIAL_PODIUM));
         }
 
+        if (Array.isArray(parsed.matches)) {
+          normalizeGroupBSchedule(parsed.matches);
+          parsed.matches = sortMatchesByCanonicalOrder(parsed.matches);
+        }
         recalculateAllStats(parsed.teams, parsed.matches, parsed.podium);
         return parsed;
       }

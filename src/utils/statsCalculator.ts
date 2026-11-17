@@ -618,6 +618,35 @@ export function updateKnockoutProgression(teams: Team[], matches: Match[], podiu
 }
 
 /**
+ * Thứ tự lịch Bảng B hiện hành:
+ *   Vòng 1B: CORNER FC vs DAT BAO DNC
+ *   Vòng 2B: DAT BAO DNC vs KIHITO MADAM
+ *   Vòng 3B: KIHITO MADAM vs CORNER FC
+ * Hàm này sắp lại các trận Bảng B (dữ liệu cũ đã lưu trên server/trình duyệt) theo đúng thứ tự trên,
+ * giữ nguyên tỉ số, bàn thắng, thẻ của từng cặp đấu. An toàn khi gọi nhiều lần.
+ */
+export function normalizeGroupBSchedule(matches: Match[]): void {
+  if (!Array.isArray(matches)) return;
+  const slots: Array<{ teams: [string, string]; n: number }> = [
+    { teams: ['corner_fc', 'dat_bao_dnc'], n: 1 },
+    { teams: ['dat_bao_dnc', 'kihito_madam'], n: 2 },
+    { teams: ['kihito_madam', 'corner_fc'], n: 3 }
+  ];
+  matches.forEach(m => {
+    if (!m || m.stage !== 'group_b') return;
+    const slot = slots.find(
+      sl =>
+        (m.homeTeamId === sl.teams[0] && m.awayTeamId === sl.teams[1]) ||
+        (m.homeTeamId === sl.teams[1] && m.awayTeamId === sl.teams[0])
+    );
+    if (!slot) return;
+    m.id = `m_gb_${slot.n}`;
+    m.matchCode = `Vòng ${slot.n}B`;
+    m.roundName = `Vòng ${slot.n}`;
+  });
+}
+
+/**
  * Canonical sort order:
  * 1A -> 1B -> 2A -> 2B -> 3A -> 3B ->
  * Bán kết 1 đi -> Bán kết 2 đi -> Bán kết 1 về -> Bán kết 2 về ->

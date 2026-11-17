@@ -7,7 +7,8 @@ import {
   recalculateAllStats,
   normalizeText,
   getCreditedAssister,
-  getGroupStandings
+  getGroupStandings,
+  normalizeGroupBSchedule
 } from './statsCalculator';
 import { Team, Match } from '../types/tournament';
 
@@ -244,4 +245,25 @@ test('getGroupStandings: hòa điểm/hiệu số/bàn thắng -> đối đầu 
     awayCards: [{ id: 'c2', player: 'q', type: 'red' }]
   }];
   assert.equal(getGroupStandings(teams, 'A', draw)[0].teamId, 'a');
+});
+
+test('normalizeGroupBSchedule: sắp lại Bảng B theo thứ tự mới, giữ nguyên tỉ số', () => {
+  const base = { stage: 'group_b' as const, stageLabel: 'Bảng B', statusText: '', status: 'completed' as const, homeGoals: [], awayGoals: [] };
+  const ms: Match[] = [
+    { ...base, id: 'm_gb_1', matchCode: 'Vòng 1B', roundName: 'Vòng 1', homeTeamId: 'kihito_madam', awayTeamId: 'corner_fc', homeScore: 2, awayScore: 3 },
+    { ...base, id: 'm_gb_2', matchCode: 'Vòng 2B', roundName: 'Vòng 2', homeTeamId: 'corner_fc', awayTeamId: 'dat_bao_dnc', homeScore: 1, awayScore: 8 },
+    { ...base, id: 'm_gb_3', matchCode: 'Vòng 3B', roundName: 'Vòng 3', homeTeamId: 'dat_bao_dnc', awayTeamId: 'kihito_madam', homeScore: 5, awayScore: 1 }
+  ];
+  normalizeGroupBSchedule(ms);
+  normalizeGroupBSchedule(ms); // gọi lại không đổi
+  const by = (code: string) => ms.find(m => m.matchCode === code)!;
+  assert.equal(by('Vòng 1B').homeTeamId, 'corner_fc');
+  assert.equal(by('Vòng 1B').awayTeamId, 'dat_bao_dnc');
+  assert.equal(by('Vòng 1B').homeScore, 1);
+  assert.equal(by('Vòng 2B').homeTeamId, 'dat_bao_dnc');
+  assert.equal(by('Vòng 2B').awayTeamId, 'kihito_madam');
+  assert.equal(by('Vòng 3B').homeTeamId, 'kihito_madam');
+  assert.equal(by('Vòng 3B').awayTeamId, 'corner_fc');
+  assert.equal(by('Vòng 3B').homeScore, 2);
+  assert.equal(by('Vòng 1B').id, 'm_gb_1');
 });
